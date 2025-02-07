@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_tarea.css') }}">
+    <title>Crear Asistencia</title>
+</head>
+<body>
+    <main class="main-container">
+        <div class="form-container">
+            <h1 class="title">Crear Nueva Asistencia</h1>
+            <form method="POST" class="task-form">
+
+                <!-- Mensaje de éxito o error -->
+                {% if mensaje %}
+                <div class="mensaje" id="mensaje">{{ mensaje }}</div>
+                {% endif %}
+
+                <!-- Selección de Alumno -->
+                <label for="alumno">Selecciona un Alumno:</label>
+                <select name="alumno" id="alumno" class="input-field" required>
+                    {% for alumno in alumnos %}
+                        <option value="{{ alumno[0] }}">{{ alumno[0] }}</option>  <!-- Si es una tupla, usa alumno[0] -->
+                    {% endfor %}
+                </select>
+                
+
+                <!-- Nombre de la Tarea -->
+                <label for="nombre">Nombre de la Asistencia:</label>
+                <input type="text" name="nombre_asistencia" id="nombre_asistencia" class="input-field" required>
+
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion_asistencia" class="input-field"></textarea>
+                
+
+                <!-- Fecha de falta -->
+                <label for="fecha_falta">Fecha de Falta:</label>
+                <input type="date" name="fecha_falta" id="fecha_falta" class="input-field" required>
+
+                <!-- Botón para enviar -->
+                <button type="submit" class="submit-btn">Crear Asistencia</button>
+                
+                <!-- Enlace para volver atrás -->
+                <a href="{{ url_for('vista_profesor') }}" class="back-link">Volver</a>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

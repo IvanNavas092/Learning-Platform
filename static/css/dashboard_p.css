@@ -1,0 +1,128 @@
+/* Variables actualizadas */
+:root {
+    --primary-color: #f43f33; /* Rojo */
+    --primary-color-hover: #d32f2f; /* Rojo oscuro */
+    --background-color: #f4f4f4;
+    --card-background-color: #ffffff;
+    --text-color: #333;
+    --muted-text-color: #777;
+    --progress-bg-color: #e0e0e0;
+    --navbar-text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Estilo del mensaje de bienvenida */
+.welcome-message {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+    margin: 20px auto;
+}
+
+.welcome-message h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    color: #555;
+    font-size: 1.2rem;
+}
+
+/* Botón Crear Curso */
+.create-course-btn-container  {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+
+}
+
+.create-course-btn-container .btn {
+    font-size: 18px;
+    padding: 12px 25px;
+}
+
+/* Contenedor de tarjetas */
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+/* Estilo de las tarjetas */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: 300px;
+    width: 250px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #555;
+    font-size: 1rem;
+}
+
+.card hr {
+    margin: 15px 0;
+    border: none;
+    height: 1px;
+    background: #ddd;
+}
+
+.card a {
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 12px 25px;
+    display: inline-block;
+}
+
+/* Estilo del botón */
+.btn {
+    background-color: var(--primary-color); /* Rojo */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--primary-color-hover); /* Rojo más oscuro al pasar el ratón */
+}

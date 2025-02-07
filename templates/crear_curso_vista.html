@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_curso.css') }}">
+    <title>Crear Curso</title>
+</head>
+<body>
+    <main class="main-container">
+        <div class="form-container">
+            <h1 class="title">Crear Nuevo Curso</h1>
+
+            <!-- Mensaje de éxito o error -->
+            {% if mensaje %}
+            <div class="mensaje" id="mensaje">{{ mensaje }}</div>
+            {% endif %}
+
+            <form method="POST" class="course-form">
+                <label for="nombre_curso">Nombre del Curso:</label>
+                <input type="text" name="nombre_curso" id="nombre_curso" class="input-field" required>
+
+                <label for="profesor">Nombre del Profesor:</label>
+                <input type="text" name="profesor" id="profesor" class="input-field" required>
+
+                <button type="submit" class="submit-btn">Crear Curso</button>
+            </form>
+
+            <a href="{{ url_for('vista_profesor') }}" class="back-link">Volver</a>
+        </div>
+    </main>
+</body>
+</html>

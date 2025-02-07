@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editar_cursos.css') }}">
+    <title>Editar Cursos</title>
+</head>
+
+<body>
+
+    <main class="main-container">
+        <div class="form-container">
+            <h1 class="title">Editar Cursos</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre del Curso</th>
+                        <th>Profesor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.nombre }}</td>
+                        <td>{{ curso.profesor }}</td>
+                        <td>
+                            <!-- Botón de eliminar curso -->
+                            <a href="{{ url_for('eliminar_curso', id=curso.id) }}" class="btn" onclick="return confirmar_eliminacion()">
+                                <img src="../static/img/remove.png" width="20px" height="20px" alt="borrar">
+                            </a>
+                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <a href="{{ url_for('vista_profesor') }}" class="btn-back">Volver</a>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script>
+        function confirmar_eliminacion() {
+            return confirm("Estas seguro que quieres eliminar este curso?")
+        }
+    </script>
+</body>
+</html>

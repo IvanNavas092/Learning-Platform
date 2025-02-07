@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_login.css') }}">
+    <title>Document</title>
+</head>
+<body>
+   
+    <!-- login -->
+     <div class="box_login">
+        <div class="login">
+            <form action="" method="post" id="form_login">
+                <div class="circle">
+                    <img src="{{ url_for('static', filename='img/hat.svg') }}" alt="">
+                </div>
+                <input type="text" id="username" name="username" placeholder="Usuario" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <!-- Mostrar mensaje de error si existe -->
+                {% if mensaje %}
+                    <p>{{ mensaje }}</p>
+                {% endif %}
+                <button type="submit"><a href="{{url_for('vista_profesor')}}">Entrar</a></button>
+                <div class="accountNO">
+                    <p class="user_no">¿No tienes usuario?</p>
+                    <a id="button_registration" href="{{url_for('registration')}}">Registrarse</a>
+                </div>
+            </form>
+        </div>
+     </div>
+     {% block content %}
+     <main>
+        <!-- Contenido -->
+         
+     </main>
+     {% endblock %}
+</body>
+</html>

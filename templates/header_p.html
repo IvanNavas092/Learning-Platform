@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_header.css') }}">
+</head>
+<body>
+    <!-- Menu -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/hat.svg') }}" alt="Logo">
+            
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('crear_curso') }}" class="btn btn-primary">Crear Curso</a></li>
+            <li><a href="{{ url_for('editar_cursos') }}" class="btn btn-primary">Editar Curso</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+            
+        </ul>
+    </nav>
+</body>
+</html>

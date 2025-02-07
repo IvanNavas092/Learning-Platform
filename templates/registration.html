@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_register.css') }}">
+    <title>Registro</title>
+</head>
+<body>
+    <div class="box_login">
+        <div class="login">
+            <form action="/registration" method="post" id="form_register">
+                <div class="circle">
+                    <img src="{{ url_for('static', filename='img/hat.svg') }}" alt="">
+                </div>
+                {% if mensaje %}
+                    <p style="color: red; text-align: center; font-size:11px">{{ mensaje }}</p>
+                {% endif %}
+                <input type="text" id="dni" name="dni" placeholder="DNI" required maxlength="9">
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+
+                <!-- Select dinámico para cursos -->
+                <select name="curso" id="curso" required>
+                    <option value="" disabled selected>Selecciona un curso</option>
+                    {% for curso in cursos %}
+                        <option value="{{ curso }}">{{ curso }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="select_role" required>
+                    <option value="" disabled selected>Selecciona Rol</option>
+                    <option value="Alumno">Alumno</option>
+                    <option value="Profesor">Profesor</option>
+                </select>
+
+                <button type="submit">Registrarse</button>
+                <a href="{{url_for('login')}}">¿Ya tienes cuenta?</a>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../static/js/script.js"></script>
+    {% block content %}
+    <main></main>
+    {% endblock %}
+</body>
+</html>

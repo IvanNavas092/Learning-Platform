@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_p.css') }}">
+    <title>Dashboard Profesor</title>
+</head>
+<body>
+    {% include 'header_p.html' %}
+    <!-- Main Content -->
+    <main>
+        <div class="welcome-message">
+            <h1>Bienvenido, {{ nombre_usuario }}!</h1>
+            <p>¡Aquí podrás gestionar tus alumnos y cursos!</p>
+        </div>
+        
+
+
+        <div class="container">
+            <div class="card">
+                <img src="../static/img/tarea.png" alt="Icono de tareas">
+                <h2>Crear Tareas</h2>
+                <p>Gestiona las tareas para tu alumnado!</p>
+                <hr>
+                <a href="{{ url_for('crear_tarea') }}" class="btn btn-primary">Crear Tarea</a>
+            </div>
+            <div class="card">
+                <img src="../static/img/tarea.png" alt="Icono de asistencias">
+                <h2>Crear Asistencias</h2>
+                <p>Gestiona las tareas para tu alumnado!</p>
+                <hr>
+                <a href="{{ url_for('crear_asistencia') }}" class="btn btn-primary">Crear Asistencia</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

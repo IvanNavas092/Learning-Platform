@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_a.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard Alumno</title>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main>
+        <!-- Mensaje de bienvenida -->
+        <div class="welcome-message">
+            <h2>Bienvenido, {{ nombre_usuario }}!</h2>
+        </div>
+
+        <!-- Sección de Tareas -->
+        <div class="accordion">
+            <button class="accordion-header">Mis Tareas</button>
+            <div class="accordion-content">
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Tarea</th>
+                            <th>Descripción</th>
+                            <th>Fecha de Entrega</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tarea in tareas %}
+                            <tr>
+                                <td>{{ tarea[1] }}</td>
+                                <td>{{ tarea[3] }}</td>
+                                <td>{{ tarea[4] }}</td>
+
+                                <td>
+                                    {% if tarea[5] == 0 %}
+                                        <span class="estado no-entregado">No entregado</span>
+                                    {% else %}
+                                        <span class="estado entregado">Entregado</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if tarea[5] == 0 %}
+                                        <form action="{{ url_for('entregar_tarea', tarea_id=tarea[0]) }}" method="POST">
+                                            <button type="submit" class="btn-entregar">Entregar</button>
+                                        </form>
+                                    {% else %}
+                                        <button class="btn-entregado" disabled>Entregado</button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sección de Asistencias -->
+        <div class="accordion">
+            <button class="accordion-header">Mis Asistencias</button>
+            <div class="accordion-content">
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Razón</th>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for asistencia in asistencias %}
+                            <tr>
+                                <td>{{ asistencia[1] }}</td>
+                                <td>{{ asistencia[2] }}</td>
+                                <td>{{ asistencia[3] }}</td>
+                                <td>{{ asistencia[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sección de Rendimiento -->
+        <div class="accordion">
+            <button class="accordion-header">Mi Rendimiento</button>
+            <div class="accordion-content">
+                <div class="graphic">
+                    <canvas id="myChart"></canvas>
+               </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <script>
+
+        // Obtener todos los encabezados de acordeón
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                // Toggle la clase active para abrir/cerrar el acordeón
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+
+                // Si el acordeón está cerrado, lo abrimos con animación
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Gráfico 
+        const data = JSON.parse('{{ chart_data | tojson }}'); // Convertimos chart_data a JSON
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut', 
+            data: {
+                labels: data.labels, 
+                datasets: [{
+                    label: 'Tareas',
+                    data: data.values,
+                    backgroundColor: ['#28b463', '#d32f2f'], 
+                    borderColor: 'rgba(255, 255, 255, 0.5)', 
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true, 
+                plugins: {
+                    legend: {
+                        position: 'top', 
+                        labels: {
+                            font: {
+                                size: 14, 
+                                weight: 'bold'
+                            },
+                            padding: 10 
+                        }
+                    },
+                    tooltip: {
+                        enabled: true 
+                    }
+                },
+                cutout: '70%', 
+                elements: {
+                    arc: {
+                        borderWidth: 0 
+                    }
+                }
+            }
+        });
+
+
+
+
+    </script>
+</body>
+</html>
